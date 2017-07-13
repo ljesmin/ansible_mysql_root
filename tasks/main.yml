@@ -3,7 +3,7 @@
   register: mycnf
 - name: change root password
   mysql_user: user="root" password="{{ mysql_root_password }}"
-  when: mysql_root_password is defined and not mycnf.stat.islnk is not defined
+  when: mysql_root_password is defined and mycnf.stat.islnk is not defined
 - name: create /root/.my.cnf
   template: src="my.cnf.j2" dest="/root/.my.cnf" owner="root" group="root" mode=0600
   when: mysql_root_password is defined
